@@ -42,7 +42,7 @@ class _StepFiveState extends State<StepFive> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black,
+      color: Colors.black.withValues(alpha: 0.7),
       padding: const EdgeInsets.symmetric(horizontal: 32),
       child: Center(
         child: ConstrainedBox(
@@ -53,7 +53,7 @@ class _StepFiveState extends State<StepFive> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Text(
-                  "CONTACTO",
+                  "CONTACTE",
                   style: TextStyle(
                     fontSize: 42,
                     fontWeight: FontWeight.bold,
@@ -66,9 +66,9 @@ class _StepFiveState extends State<StepFive> {
                 TextFormField(
                   controller: _name,
                   style: const TextStyle(color: Colors.white),
-                  decoration: _inputDecoration("Nombre"),
+                  decoration: _inputDecoration("Nom"),
                   validator: (v) =>
-                  v == null || v.isEmpty ? "Introduce tu nombre" : null,
+                  v == null || v.isEmpty ? "Introdueix el teu nom" : null,
                 ),
                 const SizedBox(height: 16),
 
@@ -78,7 +78,7 @@ class _StepFiveState extends State<StepFive> {
                   style: const TextStyle(color: Colors.white),
                   decoration: _inputDecoration("Email"),
                   validator: (v) {
-                    if (v == null || v.isEmpty) return "Introduce tu email";
+                    if (v == null || v.isEmpty) return "Introdeix el teu email";
                     if (!v.contains("@")) return "Email no válido";
                     return null;
                   },
@@ -90,9 +90,9 @@ class _StepFiveState extends State<StepFive> {
                   controller: _message,
                   style: const TextStyle(color: Colors.white),
                   maxLines: 4,
-                  decoration: _inputDecoration("Mensaje"),
+                  decoration: _inputDecoration("Missatge"),
                   validator: (v) =>
-                  v == null || v.isEmpty ? "Escribe un mensaje" : null,
+                  v == null || v.isEmpty ? "Escriu un missatge" : null,
                 ),
 
                 const SizedBox(height: 32),
@@ -112,7 +112,7 @@ class _StepFiveState extends State<StepFive> {
                       foregroundColor: Colors.black,
                     ),
                     child: const Text(
-                      "ENVIAR MENSAJE",
+                      "ENVIAR MISSATGE",
                       style:
                       TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
