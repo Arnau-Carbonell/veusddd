@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 import 'package:video_player/video_player.dart';
 
 class StepOne extends StatefulWidget {
@@ -42,7 +43,8 @@ class _StepOneState extends State<StepOne>
         // Texto animado
         FadeTransition(
           opacity: _fade,
-          child: Center(
+          child: Padding(
+            padding: EdgeInsets.only(top: 25.h),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: const [
@@ -57,7 +59,7 @@ class _StepOneState extends State<StepOne>
                 SizedBox(height: 12),
                 Text(
                   'Baixa per a continuar',
-                  style: TextStyle(color: Colors.white70, fontSize: 20),
+                  style: TextStyle(color: Colors.white70, fontSize: 20, fontStyle: FontStyle.italic),
                 ),
                 SizedBox(height: 4),
                 Icon(Icons.arrow_downward_rounded, color: Colors.white,)

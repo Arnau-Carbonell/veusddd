@@ -60,7 +60,8 @@ class _StepFourState extends State<StepFour>
                           ),),
                         SizedBox(height: 2.h,),
                         const Text(
-                          "Descripció Filippo",
+                          "Llicenciat superior en piano Cum Laude al Conservatori de Perugia (Itàlia) i Diploma en Direcció d’Orquestra a l’ESMUC"
+                              "\n Ha compost, interpretat i dirigit desenes de formacions en l'àmbit teatral on destaca la seva activitat com a pianista i Director Musical en alguns dels musicals més importants a Catalunya i Espanya com The Wild Party, La Familia Addams o A Chorus Line.",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 32,

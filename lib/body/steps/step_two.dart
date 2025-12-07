@@ -50,7 +50,7 @@ class _StepTwoState extends State<StepTwo>
                     child: const Text(
                       "Un viatge musical que travessa fronteres i emocions."
                           "\nDe l'arrel alcoiana fins a les grans veus universals: Ovidi Montllor, Camilo Sesto, Nino Bravo, Elton John, Sinatra..."
-                      "\nXavi Mira posa veu i ànima a melodies que han fet història, mentre Filippo Fanó acarona el piano amb sensibilitat i elebància.",
+                      "\nXavi Mira posa veu i ànima a melodies que han fet història, mentre Filippo Fanó acarona el piano amb sensibilitat i elegància.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 32,

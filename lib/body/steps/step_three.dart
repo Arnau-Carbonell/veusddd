@@ -35,7 +35,7 @@ class _StepThreeState extends State<StepThree>
     return Container(
       color: Colors.black.withValues(alpha: 0.7),
       child: Padding(
-        padding: EdgeInsetsGeometry.symmetric(horizontal: 1.w),
+        padding: EdgeInsetsGeometry.symmetric(horizontal: 1.w, vertical: 14.h),
         child: Row(
           children: [
             SizedBox(
@@ -58,7 +58,9 @@ class _StepThreeState extends State<StepThree>
                           ),),
                         SizedBox(height: 2.h,),
                         const Text(
-                          "Descripció Xavi",
+                          "Actor i cantant amb més de 30 anys d'experiències en cine i televisió."
+                              "\nProtagonsita de musicals com 'La Familia Addams' (PTM a millor actor de musical) "
+                              "o T'estime ets Perfecte ja et Canviaré (Premi Butaca a millor actor de musical)",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 32,
@@ -72,7 +74,7 @@ class _StepThreeState extends State<StepThree>
               ),
             ),
             SizedBox(width: 3.w),
-            Image.asset('assets/images/xavi.jpg', width: 45.w,),
+            Image.asset('assets/images/xavi.jpeg', width: 45.w,),
           ],
         ),
       ),
