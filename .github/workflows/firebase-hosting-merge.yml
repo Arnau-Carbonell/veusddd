@@ -20,7 +20,7 @@ jobs:
 
       # 3. Build Flutter Web
       - run: flutter pub get
-      - run: flutter build web --release --dart-define=RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
+      - run: flutter build web --release
 
       # 4. Deploy to Firebase Hosting (con action que ya trae firebase-tools)
       - uses: w9jds/firebase-action@v13.24.0
