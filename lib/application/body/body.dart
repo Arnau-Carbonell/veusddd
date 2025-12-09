@@ -1,11 +1,14 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:veusddd/body/steps/step_five.dart';
-import 'package:veusddd/body/steps/step_four.dart';
-import 'package:veusddd/body/steps/step_one.dart';
-import 'package:veusddd/body/steps/step_three.dart';
-import 'package:veusddd/body/steps/step_two.dart';
+import 'package:veusddd/application/body/steps/step_video.dart';
+import 'package:veusddd/application/body/widgets/contact_button.dart';
 import 'package:video_player/video_player.dart';
+
+import 'steps/step_start.dart';
+import 'steps/step_description.dart';
+import 'steps/step_xavi.dart';
+import 'steps/step_filippo.dart';
+import 'steps/step_contact.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});
@@ -39,7 +42,7 @@ class _BodyState extends State<Body> {
   void _nextPage() async {
     if (_isAnimating) return;
     if (!_pageController.hasClients) return;
-    if (_pageController.page!.round() >= 4) return;
+    if (_pageController.page!.round() >= 5) return;
 
     _isAnimating = true;
 
@@ -85,6 +88,7 @@ class _BodyState extends State<Body> {
           ),
         )
             : const Center(child: CircularProgressIndicator()),
+
         Listener(
           onPointerSignal: (event) {
             if (event is PointerScrollEvent) {
@@ -102,13 +106,30 @@ class _BodyState extends State<Body> {
               physics: const NeverScrollableScrollPhysics(),
               scrollDirection: Axis.vertical,
               children: const [
-                StepOne(),
-                StepTwo(),
-                StepThree(),
-                StepFour(),
-                StepFive()
+                StepStart(),
+                StepDescription(),
+                StepXavi(),
+                StepFilippo(),
+                StepVideo(),
+                StepContact()
               ],
             ),
+          ),
+        ),
+
+        Positioned(
+          top: 32,
+          right: 32,
+          child: ContactButton(
+            onTap: () {
+              if (_pageController.hasClients) {
+                _pageController.animateToPage(
+                  5,
+                  duration: const Duration(milliseconds: 900),
+                  curve: Curves.easeInOut,
+                );
+              }
+            },
           ),
         ),
       ],

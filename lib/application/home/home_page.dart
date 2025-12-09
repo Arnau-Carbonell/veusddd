@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:veusddd/body/body.dart';
+
+import '../body/body.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:video_player/video_player.dart';
 
-class StepOne extends StatefulWidget {
-  const StepOne({super.key});
+class StepStart extends StatefulWidget {
+  const StepStart({super.key});
 
   @override
-  State<StepOne> createState() => _StepOneState();
+  State<StepStart> createState() => _StepStartState();
 }
 
-class _StepOneState extends State<StepOne>
+class _StepStartState extends State<StepStart>
     with SingleTickerProviderStateMixin {
   late AnimationController _anim;
   late Animation<double> _fade;

@@ -1,42 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class StepFive extends StatefulWidget {
-  const StepFive({super.key});
+import '../../../src/email/send_email.dart';
+
+class StepContact extends StatefulWidget {
+  const StepContact({super.key});
 
   @override
-  State<StepFive> createState() => _StepFiveState();
+  State<StepContact> createState() => _StepContactState();
 }
 
-class _StepFiveState extends State<StepFive> {
+class _StepContactState extends State<StepContact> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _name = TextEditingController();
-  final TextEditingController _email = TextEditingController();
   final TextEditingController _message = TextEditingController();
 
   Future<void> _sendEmail() async {
-    final subject = Uri.encodeComponent(
-      "Contacto desde la web - ${_name.text}",
+    await EmailService.sendEmail(
+      subject: _name.text,
+      message: _message.text,
     );
-
-    final body = Uri.encodeComponent(
-      "Nombre: ${_name.text}\n"
-          "Email: ${_email.text}\n\n"
-          "Mensaje:\n${_message.text}",
-    );
-
-    final Uri emailUri = Uri.parse(
-      "mailto:distribucio@veusdd.es?subject=$subject&body=$body",
-    );
-
-    if (await canLaunchUrl(emailUri)) {
-      await launchUrl(emailUri);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("No se pudo abrir el cliente de correo")),
-      );
-    }
   }
 
   @override
@@ -62,30 +45,16 @@ class _StepFiveState extends State<StepFive> {
                 ),
                 const SizedBox(height: 32),
 
-                // ✅ NOMBRE
                 TextFormField(
                   controller: _name,
                   style: const TextStyle(color: Colors.white),
-                  decoration: _inputDecoration("Nom"),
+                  decoration: _inputDecoration("Assumpte"),
                   validator: (v) =>
-                  v == null || v.isEmpty ? "Introdueix el teu nom" : null,
+                  v == null || v.isEmpty ? "Introdueix l'assumpte" : null,
                 ),
+
                 const SizedBox(height: 16),
 
-                // ✅ EMAIL
-                TextFormField(
-                  controller: _email,
-                  style: const TextStyle(color: Colors.white),
-                  decoration: _inputDecoration("Email"),
-                  validator: (v) {
-                    if (v == null || v.isEmpty) return "Introdeix el teu email";
-                    if (!v.contains("@")) return "Email no válido";
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 16),
-
-                // ✅ MENSAJE
                 TextFormField(
                   controller: _message,
                   style: const TextStyle(color: Colors.white),
@@ -97,7 +66,6 @@ class _StepFiveState extends State<StepFive> {
 
                 const SizedBox(height: 32),
 
-                // ✅ BOTÓN ENVIAR
                 SizedBox(
                   width: double.infinity,
                   height: 56,
@@ -131,7 +99,7 @@ class _StepFiveState extends State<StepFive> {
       hintText: hint,
       hintStyle: const TextStyle(color: Colors.white54),
       filled: true,
-      fillColor: Colors.white.withOpacity(0.08),
+      fillColor: Colors.white.withValues(alpha: 0.08),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: BorderSide.none,

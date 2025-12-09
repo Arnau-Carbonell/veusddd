@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-class StepThree extends StatefulWidget {
-  const StepThree({super.key});
+class StepXavi extends StatefulWidget {
+  const StepXavi({super.key});
 
   @override
-  State<StepThree> createState() => _StepThreeState();
+  State<StepXavi> createState() => _StepXaviState();
 }
 
-class _StepThreeState extends State<StepThree>
+class _StepXaviState extends State<StepXavi>
     with SingleTickerProviderStateMixin {
   late AnimationController _anim;
   late Animation<Offset> _slide;
@@ -28,6 +28,11 @@ class _StepThreeState extends State<StepThree>
     );
 
     _fade = CurvedAnimation(parent: _anim, curve: Curves.easeIn);
+  }
+  @override
+  void dispose() {
+    _anim.dispose();
+    super.dispose();
   }
 
   @override

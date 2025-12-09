@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
-import 'home/home_page.dart';
+import 'application/home/home_page.dart';
 
 void main() {
   runApp(const MyApp());
