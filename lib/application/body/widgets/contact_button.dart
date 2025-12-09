@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-class ContactButton extends StatefulWidget {
+class CustomButton extends StatefulWidget {
   final VoidCallback onTap;
+  final IconData icon;
+  final String text;
 
-  const ContactButton({required this.onTap, super.key});
+  const CustomButton({required this.onTap, required this.icon, required this.text, super.key});
 
   @override
-  State<ContactButton> createState() => _ContactButtonState();
+  State<CustomButton> createState() => _CustomButtonState();
 }
 
-class _ContactButtonState extends State<ContactButton> {
+class _CustomButtonState extends State<CustomButton> {
   bool _isHovering = false;
 
   @override
@@ -44,15 +46,15 @@ class _ContactButtonState extends State<ContactButton> {
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
-            children: const [
+            children: [
               Icon(
-                Icons.mail_outline,
+                widget.icon,
                 color: Colors.black,
                 size: 20,
               ),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               Text(
-                "Contacte",
+                widget.text,
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,

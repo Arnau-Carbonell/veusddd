@@ -1,5 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:veusddd/application/body/steps/step_video.dart';
 import 'package:veusddd/application/body/widgets/contact_button.dart';
 import 'package:video_player/video_player.dart';
@@ -120,16 +122,30 @@ class _BodyState extends State<Body> {
         Positioned(
           top: 32,
           right: 32,
-          child: ContactButton(
-            onTap: () {
-              if (_pageController.hasClients) {
-                _pageController.animateToPage(
-                  5,
-                  duration: const Duration(milliseconds: 900),
-                  curve: Curves.easeInOut,
-                );
-              }
-            },
+          child: Row(
+            children: [
+              CustomButton(
+                text: 'Descarregar dossier',
+                onTap: () async {
+                  await launchUrl(Uri.parse('files/DOSSIER_PRINT.pdf'), mode: LaunchMode.platformDefault);
+                },
+                icon: Icons.picture_as_pdf_outlined,
+              ),
+              SizedBox(width: 1.w,),
+              CustomButton(
+                text: 'Contacte',
+                onTap: () {
+                  if (_pageController.hasClients) {
+                    _pageController.animateToPage(
+                      5,
+                      duration: const Duration(milliseconds: 900),
+                      curve: Curves.easeInOut,
+                    );
+                  }
+                },
+                icon: Icons.mail_outline,
+              ),
+            ],
           ),
         ),
       ],
