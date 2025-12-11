@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
 
 class StepDescription extends StatefulWidget {
-  const StepDescription({super.key});
+  final Size size;
+  const StepDescription({super.key, required this.size});
 
   @override
   State<StepDescription> createState() => _StepDescriptionState();
@@ -29,6 +29,7 @@ class _StepDescriptionState extends State<StepDescription>
 
     _fade = CurvedAnimation(parent: _anim, curve: Curves.easeIn);
   }
+
   @override
   void dispose() {
     _anim.dispose();
@@ -37,28 +38,43 @@ class _StepDescriptionState extends State<StepDescription>
 
   @override
   Widget build(BuildContext context) {
+    final w = widget.size.width;
+
+    double fontSize = w * 0.02;
+    fontSize = fontSize.clamp(16, 36);
+
+    double paddingH = w * 0.02;
+    double imageWidth = w * 0.45;
+    double textWidth = w * 0.45;
+
     return Container(
       color: Colors.black.withValues(alpha: 0.7),
       child: Padding(
-        padding: EdgeInsetsGeometry.symmetric(horizontal: 1.w),
+        padding: EdgeInsets.symmetric(horizontal: paddingH),
         child: Row(
           children: [
-            Image.asset('assets/images/mans.jpg', width: 45.w,),
-            SizedBox(width: 3.w),
+            Image.asset(
+              'assets/images/mans.jpg',
+              width: imageWidth,
+              fit: BoxFit.cover,
+            ),
+
+            SizedBox(width: w * 0.03),
+
             SizedBox(
-              width: 45.w,
+              width: textWidth,
               child: Center(
                 child: FadeTransition(
                   opacity: _fade,
                   child: SlideTransition(
                     position: _slide,
-                    child: const Text(
+                    child: Text(
                       "Un viatge musical que travessa fronteres i emocions."
                           "\nDe l'arrel alcoiana fins a les grans veus universals: Ovidi Montllor, Camilo Sesto, Nino Bravo, Elton John, Sinatra..."
-                      "\nXavi Mira posa veu i ànima a melodies que han fet història, mentre Filippo Fanó acarona el piano amb sensibilitat i elegància.",
+                          "\nXavi Mira posa veu i ànima a melodies que han fet història, mentre Filippo Fanó acarona el piano amb sensibilitat i elegància.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 32,
+                        fontSize: fontSize,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),

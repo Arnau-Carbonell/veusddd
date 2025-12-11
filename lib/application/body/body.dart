@@ -23,6 +23,7 @@ class _BodyState extends State<Body> {
   final PageController _pageController = PageController();
   bool _isAnimating = false;
   late VideoPlayerController _video;
+
   @override
   void initState() {
     super.initState();
@@ -77,6 +78,8 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -107,13 +110,13 @@ class _BodyState extends State<Body> {
               controller: _pageController,
               physics: const NeverScrollableScrollPhysics(),
               scrollDirection: Axis.vertical,
-              children: const [
-                StepStart(),
-                StepDescription(),
-                StepXavi(),
-                StepFilippo(),
-                StepVideo(),
-                StepContact()
+              children: [
+                StepStart(size: size,),
+                StepDescription(size: size,),
+                StepXavi(size: size,),
+                StepFilippo(size: size,),
+                StepVideo(size: size,),
+                StepContact(size: size,)
               ],
             ),
           ),

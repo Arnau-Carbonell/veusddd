@@ -30,14 +30,14 @@ class _CustomButtonState extends State<CustomButton> {
             borderRadius: BorderRadius.circular(30),
             border: Border.all(
               color: _isHovering
-                  ? Colors.black.withOpacity(0.8)
-                  : Colors.white.withOpacity(0.6),
+                  ? Colors.black.withValues(alpha:0.8)
+                  : Colors.white.withValues(alpha:0.6),
               width: 1,
             ),
             boxShadow: _isHovering
                 ? [
               BoxShadow(
-                color: Colors.black.withOpacity(0.2),
+                color: Colors.black.withValues(alpha:0.2),
                 blurRadius: 8,
                 offset: const Offset(0, 4),
               ),

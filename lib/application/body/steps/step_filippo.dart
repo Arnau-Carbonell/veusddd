@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
 
 class StepFilippo extends StatefulWidget {
-  const StepFilippo({super.key});
+  final Size size;
+  const StepFilippo({super.key, required this.size});
 
   @override
   State<StepFilippo> createState() => _StepFilippoState();
@@ -29,6 +29,7 @@ class _StepFilippoState extends State<StepFilippo>
 
     _fade = CurvedAnimation(parent: _anim, curve: Curves.easeIn);
   }
+
   @override
   void dispose() {
     _anim.dispose();
@@ -37,16 +38,33 @@ class _StepFilippoState extends State<StepFilippo>
 
   @override
   Widget build(BuildContext context) {
+    final w = widget.size.width;
+    final h = widget.size.height;
+
+    double titleFont = w * 0.04;
+    double bodyFont  = w * 0.02;
+
+    titleFont = titleFont.clamp(24, 60);
+    bodyFont = bodyFont.clamp(14, 32);
+
     return Container(
-      color: Colors.black.withValues(alpha: 0.7),
+      color: Colors.black.withValues(alpha:0.7),
       child: Padding(
-        padding: EdgeInsetsGeometry.symmetric(horizontal: 1.w),
+        padding: EdgeInsets.symmetric(
+          horizontal: w * 0.02,
+        ),
         child: Row(
           children: [
-            Image.asset('assets/images/filippo.jpg', width: 45.w,),
-            SizedBox(width: 3.w),
+            Image.asset(
+              'assets/images/filippo.jpg',
+              width: w * 0.45,
+              fit: BoxFit.cover,
+            ),
+
+            SizedBox(width: w * 0.03),
+
             SizedBox(
-              width: 45.w,
+              width: w * 0.45,
               child: Center(
                 child: FadeTransition(
                   opacity: _fade,
@@ -56,20 +74,24 @@ class _StepFilippoState extends State<StepFilippo>
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Filippo Fanó",
+                        Text(
+                          "Filippo Fanó",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 50,
+                            fontSize: titleFont,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                          ),),
-                        SizedBox(height: 2.h,),
-                        const Text(
-                          "Llicenciat superior en piano Cum Laude al Conservatori de Perugia (Itàlia) i Diploma en Direcció d’Orquestra a l’ESMUC"
-                              "\n Ha compost, interpretat i dirigit desenes de formacions en l'àmbit teatral on destaca la seva activitat com a pianista i Director Musical en alguns dels musicals més importants a Catalunya i Espanya com The Wild Party, La Familia Addams o A Chorus Line.",
+                          ),
+                        ),
+
+                        SizedBox(height: h * 0.02),
+
+                        Text(
+                          "Llicenciat superior en piano Cum Laude al Conservatori de Perugia (Itàlia) i Diploma en Direcció d’Orquestra a l’ESMUC\n"
+                              "Ha compost, interpretat i dirigit desenes de formacions en l'àmbit teatral on destaca la seva activitat com a pianista i Director Musical en alguns dels musicals més importants a Catalunya i Espanya com The Wild Party, La Familia Addams o A Chorus Line.",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 32,
+                            fontSize: bodyFont,
                             color: Colors.white,
                           ),
                         ),

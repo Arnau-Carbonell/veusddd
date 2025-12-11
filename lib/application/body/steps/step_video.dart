@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class StepVideo extends StatefulWidget {
-  const StepVideo({super.key});
+  final Size size;
+  const StepVideo({super.key, required this.size});
 
   @override
   State<StepVideo> createState() => _StepVideoState();
@@ -30,7 +31,7 @@ class _StepVideoState extends State<StepVideo> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
+    double screenWidth = widget.size.width;
     double maxWidth = screenWidth * 0.9;
     double height = maxWidth * 9 / 16;
 

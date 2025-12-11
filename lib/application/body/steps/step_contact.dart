@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
 import '../../../src/email/send_email.dart';
 
 class StepContact extends StatefulWidget {
-  const StepContact({super.key});
+  final Size size;
+  const StepContact({super.key, required this.size});
 
   @override
   State<StepContact> createState() => _StepContactState();
@@ -24,9 +24,24 @@ class _StepContactState extends State<StepContact> {
 
   @override
   Widget build(BuildContext context) {
+    final w = widget.size.width;
+    final h = widget.size.height;
+
+    double titleFont = w * 0.035;
+    double inputFont = w * 0.018;
+    double buttonFont = w * 0.018;
+
+    titleFont = titleFont.clamp(28, 50);
+    inputFont = inputFont.clamp(14, 22);
+    buttonFont = buttonFont.clamp(14, 22);
+
+    double verticalSpacing = h * 0.03;
+    double inputHeight = h * 0.065;
+    double buttonHeight = h * 0.07;
+
     return Container(
-      color: Colors.black.withValues(alpha: 0.7),
-      padding: const EdgeInsets.symmetric(horizontal: 32),
+      color: Colors.black.withValues(alpha:0.7),
+      padding: EdgeInsets.symmetric(horizontal: w * 0.03),
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 520),
@@ -35,40 +50,42 @@ class _StepContactState extends State<StepContact> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text(
+                Text(
                   "CONTACTE",
                   style: TextStyle(
-                    fontSize: 42,
+                    fontSize: titleFont,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),
-                const SizedBox(height: 32),
 
-                TextFormField(
-                  controller: _name,
-                  style: const TextStyle(color: Colors.white),
-                  decoration: _inputDecoration("Assumpte"),
-                  validator: (v) =>
-                  v == null || v.isEmpty ? "Introdueix l'assumpte" : null,
+                SizedBox(height: verticalSpacing),
+
+                SizedBox(
+                  height: inputHeight,
+                  child: TextFormField(
+                    controller: _name,
+                    style: TextStyle(color: Colors.white, fontSize: inputFont),
+                    decoration: _inputDecoration("Assumpte", inputFont),
+                    validator: (v) =>
+                    v == null || v.isEmpty ? "Introdueix l'assumpte" : null,
+                  ),
                 ),
-
-                const SizedBox(height: 16),
-
+                
                 TextFormField(
                   controller: _message,
-                  style: const TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white, fontSize: inputFont),
                   maxLines: 4,
-                  decoration: _inputDecoration("Missatge"),
+                  decoration: _inputDecoration("Missatge", inputFont),
                   validator: (v) =>
                   v == null || v.isEmpty ? "Escriu un missatge" : null,
                 ),
 
-                const SizedBox(height: 32),
+                SizedBox(height: verticalSpacing),
 
                 SizedBox(
                   width: double.infinity,
-                  height: 56,
+                  height: buttonHeight,
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
@@ -79,10 +96,12 @@ class _StepContactState extends State<StepContact> {
                       backgroundColor: Colors.white,
                       foregroundColor: Colors.black,
                     ),
-                    child: const Text(
+                    child: Text(
                       "ENVIAR MISSATGE",
-                      style:
-                      TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: buttonFont,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 )
@@ -94,12 +113,13 @@ class _StepContactState extends State<StepContact> {
     );
   }
 
-  InputDecoration _inputDecoration(String hint) {
+  InputDecoration _inputDecoration(String hint, double fontSize) {
     return InputDecoration(
       hintText: hint,
-      hintStyle: const TextStyle(color: Colors.white54),
+      hintStyle: TextStyle(color: Colors.white54, fontSize: fontSize),
       filled: true,
       fillColor: Colors.white.withValues(alpha: 0.08),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: BorderSide.none,
