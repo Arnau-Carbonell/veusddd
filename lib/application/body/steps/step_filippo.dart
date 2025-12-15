@@ -75,7 +75,7 @@ class _StepFilippoState extends State<StepFilippo>
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Filippo Fanó",
+                          "Filippo Fanò",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: titleFont,
